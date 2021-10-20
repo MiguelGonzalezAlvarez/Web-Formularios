@@ -9,8 +9,8 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'basicos', component: BasicosComponent },
-      { path: 'basicos', component: DinamicosComponent },
-      { path: 'basicos', component: SwitchesComponent },
+      { path: 'dinamicos', component: DinamicosComponent },
+      { path: 'switches', component: SwitchesComponent },
       { path: '**', redirectTo: 'basicos' }
     ]
   }
