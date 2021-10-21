@@ -3,15 +3,14 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="guardar(miFormulario.value)" #miFormulario="ngForm">
+        <form (ngSubmit)="guardar()" #miFormulario="ngForm">
             <!-- Nombre del producto -->
             <div class="row mb-3">
                 <label class="col-form-label col-sm-3 ">Producto</label>
                 <div class="col-sm-9">
                     <input ngModel required class="form-control" type="text" placeholder="Nombre del producto"
                         minlength="3" name="producto">
-                    <span class="form-text text-danger"
-                        *ngIf="miFormulario.controls.producto?.invalid && miFormulario.controls.producto?.touched">
+                    <span class="form-text text-danger" *ngIf="nombreValido()">
                         Debe ser de 3 letras
                     </span>
                 </div>
@@ -21,7 +20,10 @@
             <div class="row mb-3">
                 <label class="col-form-label col-sm-3 ">Precio</label>
                 <div class="col-sm-9">
-                    <input ngModel class="form-control" type="number" placeholder="Precio del producto" name="precio">
+                    <input ngModel required class="form-control" type="number" placeholder="Precio del producto" name="precio" min="0">
+                    <span class="form-text text-danger" *ngIf="precioValido()">
+                        El precio debe ser 0 o mayor
+                    </span>
                 </div>
             </div>
 
@@ -36,7 +38,7 @@
 
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end" type="submit">Guardar</button>
+                    <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">Guardar</button>
                 </div>
             </div>
 
