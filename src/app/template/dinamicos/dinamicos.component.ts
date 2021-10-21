@@ -17,6 +17,7 @@ interface Favorito {
 })
 export class DinamicosComponent {
 
+  nuevoFavorito = '';
   persona: Persona = {
     nombre: 'Miguel',
     favoritos: [
@@ -27,12 +28,19 @@ export class DinamicosComponent {
   }
 
   guardar(): void {
-
   }
 
-  eliminar(index: number): void {
-    this.persona.favoritos.splice(index, 1);
+  agregarFavorito(): void {
+    const nuevoFavorito: Favorito = {
+      id: this.persona.favoritos.length + 1,
+      nombre: this.nuevoFavorito
+    };
+    
+    this.persona.favoritos.push(nuevoFavorito);
+  }
 
+  eliminarFavorito(index: number): void {
+    this.persona.favoritos.splice(index, 1);
   }
 
 }
