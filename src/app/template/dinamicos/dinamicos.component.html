@@ -20,7 +20,8 @@
         <label class="col-sm-3 col-form-label">Agregar</label>
         <div class="col-sm-9">
             <div class="input-group">
-                <input [(ngModel)]="nuevoFavorito" class="form-control" placeholder="Agregar favorito" name="nuevoFavorito">
+                <input [(ngModel)]="nuevoFavorito" class="form-control" placeholder="Agregar favorito"
+                    name="nuevoFavorito">
                 <button (click)="agregarFavorito()" class="btn btn-outline-primary" type="button">Agregar</button>
             </div>
         </div>
@@ -37,8 +38,9 @@
         </div>
     </div>
 
+    <!-- Botonera del formulario -->
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col">
             <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.invalid">Guardar</button>
         </div>
     </div>
