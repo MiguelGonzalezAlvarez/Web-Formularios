@@ -3,13 +3,13 @@
 
 <div class="row">
     <div class="col">
-        <form [formGroup]="miFormulario" autocomplete="off">
+        <form (ngSubmit)="guardar()" [formGroup]="miFormulario" autocomplete="off">
             <!-- Nombre del producto -->
             <div class="row mb-3">
                 <label class="col-form-label col-sm-3 ">Producto</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre del producto">
-                    <span class="form-text text-danger">
+                    <input class="form-control" type="text" placeholder="Nombre del producto" formControlName="nombre">
+                    <span class="form-text text-danger" *ngIf="!campoEsValido('nombre')">
                         Debe ser de 3 letras
                     </span>
                 </div>
@@ -19,8 +19,9 @@
             <div class="row mb-3">
                 <label class="col-form-label col-sm-3 ">Precio</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="number" placeholder="Precio del producto">
-                    <span class="form-text text-danger">
+                    <input class="form-control" type="number" placeholder="Precio del producto"
+                        formControlName="precio">
+                    <span class="form-text text-danger" *ngIf="!campoEsValido('precio')">
                         El precio debe ser 0 o mayor
                     </span>
                 </div>
@@ -30,7 +31,11 @@
             <div class="row mb-3">
                 <label class="col-form-label col-sm-3 ">Existencias</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="number" placeholder="Existencias del producto">
+                    <input class="form-control" type="number" placeholder="Existencias del producto"
+                        formControlName="existencias">
+                    <span class="form-text text-danger" *ngIf="!campoEsValido('existencias')">
+                        Las existencias deben ser 0 o mayor
+                    </span>
                 </div>
             </div>
 
