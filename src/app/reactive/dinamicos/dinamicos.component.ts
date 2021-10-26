@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -11,17 +11,19 @@ export class DinamicosComponent {
 
   miFormulario: FormGroup = this.formBuilder.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
-    precio: [0, [Validators.required, Validators.min(0)]],
-    existencias: [0, [Validators.required, Validators.min(0)]]
+    favoritos: this.formBuilder.array([
+      ['Dark Souls', Validators.required],
+      ['Bloodborne', Validators.required],
+      ['Sekiro Shadows Die Twice', Validators.required]
+    ], Validators.required)
   });
 
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-    this.miFormulario.reset({
-      nombre: 'Miguel Gonzalez Alvarez'
-    });
+  get favoritosArray() {
+    // Retornamos el array de favoritos como un form array
+    return this.miFormulario.get('favoritos') as FormArray;
   }
+
+  constructor(private formBuilder: FormBuilder) { }
 
   campoEsValido(campo: string): boolean {
     return !this.miFormulario.controls[campo].errors || !this.miFormulario.controls[campo].touched;
@@ -32,10 +34,10 @@ export class DinamicosComponent {
       this.miFormulario.markAllAsTouched();
       return;
     }
-    
+
     // Imprimir el valor del formulario solo si es valido
     console.log(this.miFormulario.value);
-    
+
   }
 
 
