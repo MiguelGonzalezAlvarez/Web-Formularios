@@ -1,13 +1,13 @@
 <h2>Reactivos: <small>Dinámicos</small></h2>
 <hr>
 
-<form>
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario" autocomplete="off">
     <!-- Nombre -->
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
-            <input class="form-control" placeholder="Nombre de la persona">
-            <span class="form-text text-danger">
+            <input class="form-control" placeholder="Nombre de la persona" formControlName="nombre">
+            <span class="form-text text-danger" *ngIf="!campoEsValido('nombre')">
                 Este campo es obligatorio
             </span>
         </div>
@@ -34,7 +34,7 @@
             </div> -->
         </div>
     </div>
-    
+
     <!-- Botonera del formulario -->
     <div class="row">
         <div class="col">

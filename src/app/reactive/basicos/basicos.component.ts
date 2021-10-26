@@ -31,7 +31,7 @@ export class BasicosComponent implements OnInit {
     });
   }
 
-  campoEsValido(campo: string) {
+  campoEsValido(campo: string): boolean {
     return !this.miFormulario.controls[campo].errors || !this.miFormulario.controls[campo].touched;
   }
 
