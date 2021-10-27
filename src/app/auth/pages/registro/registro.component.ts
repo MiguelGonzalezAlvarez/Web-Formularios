@@ -33,7 +33,8 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.miFormulario.reset({
       nombre: 'Miguel Gonzalez Alvarez',
-      email: 'miggonzalv@gmail.com'
+      email: 'miggonzalv@gmail.com',
+      username: 'MiguelMuros'
     });
   }
 
