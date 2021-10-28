@@ -20,8 +20,14 @@
                 <label class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
                     <input class="form-control" type="email" formControlName="email" placeholder="Email del usuario">
-                    <span class="form-text text-danger" *ngIf="!campoValido('email')">
+                    <span class="form-text text-danger" *ngIf="emailRequired()">
                         El correo es obligatorio
+                    </span>
+                    <span class="form-text text-danger" *ngIf="emailFormato()">
+                        El correo debe tener formato de email
+                    </span>
+                    <span class="form-text text-danger" *ngIf="emailTomado()">
+                        El correo elegido ya ha sido tomado
                     </span>
                 </div>
             </div>
@@ -62,7 +68,8 @@
             <!-- Boton guardar -->
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end" tyoe="submit">Crear</button>
+                    <button class="btn btn-primary float-end" type="submit"
+                        [disabled]="miFormulario.pending">Crear</button>
                 </div>
             </div>
 
@@ -72,6 +79,12 @@
 
 <h2>Valid</h2>
 <pre>{{ miFormulario.valid }}</pre>
+
+<h2>Status</h2>
+<pre>{{ miFormulario.status }}</pre>
+
+<h2>Pending</h2>
+<pre>{{ miFormulario.pending }}</pre>
 
 <h2>Errors</h2>
 <pre>{{ miFormulario.errors | json }}</pre>
