@@ -24,6 +24,25 @@ export class RegistroComponent implements OnInit {
     validators: [this.validatorService.camposIguales('password', 'confirmacion')]
   });
 
+  get emailErrorMsg(): string {
+    // Este getter se ejecutara cada vez que angular detecte un cambio en el componente
+    const errors = this.miFormulario.get('email')?.errors;
+
+    if (errors?.required) {
+      return 'El email es obligatorio';
+    }
+
+    if (errors?.pattern) {
+      return 'El email debe tener formato de correo';
+    }
+
+    if (errors?.emailTomado) {
+      return 'El email ya fue tomado';
+    }
+
+    return '';
+  }
+
   constructor(
     private formBuilder: FormBuilder,
     private validatorService: ValidatorService,
@@ -42,18 +61,6 @@ export class RegistroComponent implements OnInit {
 
   campoValido(campo: string) {
     return !(this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched);
-  }
-
-  emailRequired() {
-    return this.miFormulario.get('email')?.errors?.required && this.miFormulario.get('email')?.touched;
-  }
-
-  emailFormato() {
-    return this.miFormulario.get('email')?.errors?.pattern && this.miFormulario.get('email')?.touched;
-  }
-
-  emailTomado() {
-    return this.miFormulario.get('email')?.errors?.emailTomado && this.miFormulario.get('email')?.touched;
   }
 
   submitForm() {
