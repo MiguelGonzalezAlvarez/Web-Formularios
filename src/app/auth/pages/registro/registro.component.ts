@@ -15,8 +15,11 @@ export class RegistroComponent implements OnInit {
     email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     // Forma alternativa estandar para validar que es email aunque yo utilizare un pattern personalizado más estricto
     // email: ['', [Validators.required, Validators.email]] 
-    username: ['', [Validators.required, this.validatorService.validacionPersonalizada]]
-
+    username: ['', [Validators.required, this.validatorService.validacionPersonalizada]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmacion: ['', [Validators.required]]
+  }, {
+    validators: [this.validatorService.camposIguales('password','confirmacion')]
   });
 
   constructor(private formBuilder: FormBuilder, private validatorService: ValidatorService) { }
@@ -25,7 +28,7 @@ export class RegistroComponent implements OnInit {
     this.miFormulario.reset({
       nombre: 'Miguel Gonzalez Alvarez',
       email: 'miggonzalv@gmail.com',
-      username: 'MiguelMuros'
+      username: 'MiguelMuros',
     });
   }
 
